@@ -1,0 +1,1 @@
+AI Lab Atlas — Vercel-ready React/Vite app. Local: npm install && npm run dev. Deploy by importing repo in Vercel (build npm run build, output dist). Question mappings from screenshots; Set 7 missing item noted. BFS and Graph Coloring code included; other code slots awaiting exact manual code.
