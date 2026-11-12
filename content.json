@@ -1,0 +1,98 @@
+{
+  "sets": {
+    "1": {
+      "programs": [
+        "Travelling Salesman Problem",
+        "Graph Coloring Problem",
+        "Hidden Markov Model"
+      ],
+      "theory": "Explain Depth First Search with an example. Discuss its completeness, optimality, and time and space complexity.",
+      "rolls": "D0,E0,F0,G0,H0,J0,K0"
+    },
+    "2": {
+      "programs": [
+        "Missionaries and Cannibals Problem",
+        "BFS Traversal",
+        "8 Queens Problem"
+      ],
+      "theory": "Explain Breadth First Search with an example. Discuss its completeness, optimality, and time and space complexity.",
+      "rolls": "D1,E1,F1,G1,H1,J1,K1"
+    },
+    "3": {
+      "programs": [
+        "Graph Coloring Problem",
+        "Travelling Salesman Problem",
+        "Bayesian Network"
+      ],
+      "theory": "State the Travelling Salesman Problem. Why is it classified as NP-hard?",
+      "rolls": "D2,E2,F2,G2,H2,J2,K2"
+    },
+    "4": {
+      "programs": [
+        "Tic-Tac-Toe Game",
+        "DFS Traversal",
+        "Water Jug Problem"
+      ],
+      "theory": "Formulate the Water Jug problem as a state space search problem. Define the states and production rules.",
+      "rolls": "D3,E3,F3,G3,H3,J3,K3"
+    },
+    "5": {
+      "programs": [
+        "Hidden Markov Model",
+        "Hangman Game",
+        "A* Search"
+      ],
+      "theory": "What is a heuristic function? Explain the difference between an admissible and a consistent heuristic, and why admissibility guarantees that A* finds an optimal solution.",
+      "rolls": "D4,E4,F4,G4,H4,J4"
+    },
+    "6": {
+      "programs": [
+        "BFS Traversal",
+        "Bayesian Network",
+        "Graph Coloring Problem"
+      ],
+      "theory": "What is a Bayesian Network? Explain its structure and the role of conditional probability tables.",
+      "rolls": "D5,E5,F5,G5,H5,J5"
+    },
+    "7": {
+      "programs": [
+        "Water Jug Problem",
+        "Bayesian Network",
+        "Not visible in screenshot"
+      ],
+      "theory": "Not visible in provided screenshot.",
+      "rolls": "D6,E6,F6,G6,H6,J6"
+    },
+    "8": {
+      "programs": [
+        "Tic-Tac-Toe Game",
+        "Missionaries and Cannibals Problem",
+        "DFS Traversal"
+      ],
+      "theory": "Formulate the Missionaries and Cannibals problem as a state space search problem. Define states, actions and goal state.",
+      "rolls": "D7,E7,F7,G7,H7,J7"
+    },
+    "9": {
+      "programs": [
+        "8 Queens Problem",
+        "Hangman Game",
+        "A* Search"
+      ],
+      "theory": "Formulate the 8 Queens problem as a search problem. Explain the incremental and complete-state formulations.",
+      "rolls": "D8,E8,F8,G8,H8,J8"
+    },
+    "10": {
+      "programs": [
+        "DFS Traversal",
+        "Missionaries and Cannibals Problem",
+        "Travelling Salesman Problem"
+      ],
+      "theory": "Explain the brute force approach to solving TSP and its time complexity.",
+      "rolls": "D9,E9,F9,G9,H9,J9"
+    }
+  },
+  "codes": {
+    "BFS Traversal": "from collections import deque\nclass Graph:\n    def __init__(self): self.adjacency_list={}\n    def add_vertex(self,v):\n        if v not in self.adjacency_list: self.adjacency_list[v]=[]\n    def add_edge(self,u,v):\n        self.add_vertex(u); self.add_vertex(v)\n        self.adjacency_list[u].append(v); self.adjacency_list[v].append(u)\n    def bfs(self,start):\n        visited=set(); queue=deque(); order=[]\n        visited.add(start); queue.append(start)\n        while queue:\n            vertex=queue.popleft(); order.append(vertex); print('Visited:',vertex)\n            for neighbor in self.adjacency_list[vertex]:\n                if neighbor not in visited:\n                    visited.add(neighbor); queue.append(neighbor)\n        return order\ng=Graph()\nfor u,v in [(0,1),(0,2),(1,3),(1,4),(2,5),(2,6)]: g.add_edge(u,v)\nprint('BFS Traversal (Source = 0):')\nprint('BFS Order:',g.bfs(0))",
+    "Graph Coloring Problem": "graph=[[0,1,1,1,0],[1,0,1,0,1],[1,1,0,1,1],[1,0,1,0,1],[0,1,1,1,0]]\nV=len(graph); m=3; color=[0]*V\nnames={1:'RED',2:'GREEN',3:'BLUE'}\ndef is_safe(v,c):\n    for i in range(V):\n        if graph[v][i]==1 and color[i]==c: return False\n    return True\ndef solve(v):\n    if v==V: return True\n    for c in range(1,m+1):\n        if is_safe(v,c):\n            color[v]=c\n            if solve(v+1): return True\n            color[v]=0\n    return False\nif solve(0):\n    print('SOLUTION FOUND')\n    for v in range(V): print('Vertex',v,names[color[v]])\nelse: print('No solution')"
+  }
+}
